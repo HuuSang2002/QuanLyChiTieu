@@ -1,0 +1,678 @@
+/* Reset và Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: rgb(179, 129, 129)
+    
+    color: #333;
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+.app-container {
+    min-height: 100vh;
+    background: #ffffff;
+}
+
+/* Header */
+.app-header {
+   background: linear-gradient(135deg, #766a86 0%, #573dc9 100%);
+    color: white;
+    padding: 2rem 1rem;
+    text-align: center;
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.app-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.app-subtitle {
+    font-size: 1rem;
+    opacity: 0.9;
+    font-weight: 400;
+}
+
+/* Main Layout */
+.main-layout {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+/* Sidebar */
+.sidebar {
+    background: white;
+    border-radius: 20px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    height: fit-content;
+}
+
+.section-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.btn-create-wallet {
+    width: 100%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 0.75rem 1rem;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    transition: transform 0.2s ease;
+}
+
+.btn-create-wallet:hover {
+    transform: translateY(-2px);
+}
+
+.wallet-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.wallet-item {
+    background: #f8f9fa;
+    border: 2px solid transparent;
+    border-radius: 12px;
+    padding: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.wallet-item:hover {
+    border-color: #667eea;
+    transform: translateX(4px);
+}
+
+.wallet-item.active {
+    border-color: #667eea;
+    background: rgba(102, 126, 234, 0.1);
+}
+
+.wallet-item-name {
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 0.25rem;
+}
+
+.wallet-item-balance {
+    font-size: 0.9rem;
+    color: #667eea;
+    font-weight: 600;
+}
+
+/* Main Content */
+.main-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* Wallet Info Card */
+.wallet-info-card {
+    background: white;
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.wallet-header {
+    margin-bottom: 1.5rem;
+}
+
+.wallet-header h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.balance-display {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+}
+
+.balance-label {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.balance-amount {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #667eea;
+}
+
+.currency {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.wallet-actions {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 0.75rem;
+}
+
+.wallet-action-btn {
+    background: #f8f9fa;
+    border: 2px solid #e9ecef;
+    border-radius: 12px;
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.wallet-action-btn:hover {
+    border-color: #667eea;
+    transform: translateY(-2px);
+}
+
+.wallet-action-btn.delete {
+    color: #dc3545;
+    border-color: #dc3545;
+}
+
+.wallet-action-btn.delete:hover {
+    background: #dc3545;
+    color: white;
+}
+
+/* Balance Overview */
+.balance-overview {
+    background: white;
+    border-radius: 20px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.balance-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.balance-item {
+    text-align: center;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 12px;
+}
+
+.balance-label {
+    display: block;
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.balance-value {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #333;
+}
+
+/* Quick Actions */
+.quick-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.quick-action-btn {
+    background: white;
+    border: 2px solid #e9ecef;
+    border-radius: 16px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.quick-action-btn:hover {
+    border-color: #667eea;
+    transform: translateY(-2px);
+}
+
+.action-icon {
+    font-size: 2rem;
+}
+
+.action-text {
+    font-weight: 500;
+    color: #333;
+}
+
+/* Add Transaction Section */
+.add-transaction-section {
+    text-align: center;
+}
+
+.btn-add-transaction {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+.btn-add-transaction:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+}
+
+/* Transaction History */
+.transaction-history {
+    background: white;
+    border-radius: 20px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.transaction-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.transaction-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.transaction-item:hover {
+    transform: translateX(4px);
+}
+
+.transaction-info {
+    flex: 1;
+}
+
+.transaction-name {
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 0.25rem;
+}
+
+.transaction-date {
+    font-size: 0.8rem;
+    color: #666;
+    margin-bottom: 0.25rem;
+}
+
+.transaction-note {
+    font-size: 0.8rem;
+    color: #888;
+    font-style: italic;
+}
+
+.transaction-amount {
+    font-weight: 600;
+    color: #333;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    animation: fadeIn 0.3s ease;
+}
+
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    border-radius: 20px;
+    padding: 2rem;
+    width: 90%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    animation: slideIn 0.3s ease;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.modal-header h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.close {
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #666;
+    transition: color 0.3s ease;
+}
+
+.close:hover {
+    color: #333;
+}
+
+.modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group label {
+    font-weight: 500;
+    color: #333;
+    font-size: 0.9rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    padding: 0.75rem 1rem;
+    border: 2px solid #e9ecef;
+    border-radius: 12px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -60%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .main-layout {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding: 1rem;
+    }
+    
+    .wallet-actions {
+        grid-template-columns: 1fr;
+    }
+    
+    .balance-card {
+        grid-template-columns: 1fr;
+    }
+    
+    .quick-actions {
+        grid-template-columns: 1fr;
+    }
+    
+    .modal-content {
+        width: 95%;
+        margin: 1rem;
+    }
+}
+
+.amount-input {
+    text-align: right;
+    font-family: monospace;
+    font-size: 16px;
+    direction: ltr;
+}
+
+
+/* Thêm css nút xóa cho giao dịch */
+.delete-transaction-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 5px 8px;
+    border-radius: 4px;
+    transition: all 0.2s;
+    color: #666;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.delete-transaction-btn:hover {
+    background-color: rgba(255, 0, 0, 0.1);
+    color: #ff4444;
+    transform: scale(1.1);
+}
+
+.delete-transaction-btn .bi-trash-fill {
+    font-size: 16px;
+}
+
+
+/* ----------------------------------------------------------------- */
+/*cập nhật code phần ngàn */
+.amount-input {
+    text-align: right;
+    font-family: monospace;
+    font-size: 16px;
+    direction: ltr;
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.amount-input:focus {
+    outline: none;
+    border-color: #4CAF50;
+}
+
+/*---------------------------------------------------------------*/
+/* STYLE BIỂU ĐỒ TRÒN */
+.chart-section {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.chart-container {
+    position: relative;
+    height: 300px;
+    margin-bottom: 20px;
+}
+
+.chart-legend {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+}
+
+.legend-color {
+    width: 16px;
+    height: 16px;
+    border-radius: 4px;
+}
+
+.legend-income {
+    background-color: #3498db;
+}
+
+.legend-expense {
+    background-color: #e74c3c;
+}
+/*---------------------------------------------------------------*/
+
+
+
+/*Commit 06/12/2025--------------------------------------------------------------------*/
+/* Thêm vào file styles.css */
+
+/* Total Balance Section - Chỉnh chiều cao */
+.total-balance-section {
+    margin-top: 25px;
+    padding: 15px 20px; /* Giảm padding top-bottom từ 20px xuống 15px */
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 15px;
+    color: white;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    text-align: center;
+    height: auto; /* Thêm dòng này */
+    min-height: 110px; /* Thêm chiều cao tối thiểu */
+}
+
+.total-balance-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 8px; /* Giảm margin */
+}
+
+.total-balance-icon {
+    font-size: 1.2rem; /* Giảm kích thước icon */
+    color: white;
+}
+
+.total-balance-title {
+    font-size: 0.9rem; /* Giảm font size */
+    font-weight: 500;
+    color: white;
+    margin: 0;
+    opacity: 0.9;
+}
+
+.total-balance-amount {
+    font-size: 1.5rem; /* Giảm từ 2rem xuống 1.5rem */
+    font-weight: 700;
+    color: white;
+    margin: 5px 0 3px 0; /* Giảm margin */
+    line-height: 1.2; /* Giảm line-height */
+}
+
+.total-balance-currency {
+    font-size: 0.8rem; /* Giảm font size */
+    opacity: 0.8;
+    font-weight: 400;
+}
+
+/* Responsive cho phần tổng tiền */
+@media (max-width: 768px) {
+    .total-balance-section {
+        padding: 12px 15px; /* Giảm padding trên mobile */
+        min-height: 95px; /* Thấp hơn trên mobile */
+    }
+    
+    .total-balance-amount {
+        font-size: 1.2rem; /* Nhỏ hơn trên mobile */
+    }
+    
+    .total-balance-title {
+        font-size: 0.8rem;
+    }
+}
+/*Commit 06/12/2025--------------------------------------------------------------------*/

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoneyMaster - Quản lý tài chính thông minh</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="img/dollar.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@400;600;700&family=Be+Vietnam+Pro:wght@400;600;700&display=swap">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-content">
+                <h1 class="app-title gradient-text"
+                    style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight: bold;">
+                    QUẢN LÝ TÀI CHÍNH CÁ NHÂN
+                </h1>
+                <p class="app-subtitle">Quản lý tài chính thông minh</p>
+            </div>
+        </header>
+
+        <div class="main-layout">
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <div class="wallet-section">
+                    <h3 class="section-title">Ví của tôi</h3>
+                    <button class="btn-create-wallet" id="createWalletBtn">
+                        <span class="btn-icon">+</span>
+                        Tạo ví mới
+                    </button>
+                    <div class="wallet-list" id="walletList">
+                        <!-- Wallets will be populated by JavaScript -->
+                    </div>
+                    
+                    <!-- TỔNG TIỀN TẤT CẢ CÁC VÍ -->
+                    <div class="total-balance-section">
+                        <div class="total-balance-header">
+                            <i class="bi bi-wallet2 total-balance-icon"></i>
+                            <h4 class="total-balance-title">Tổng tài sản</h4>
+                        </div>
+                        <div class="total-balance-amount" id="totalBalanceAmount">0 đ</div>
+                        <div class="total-balance-currency">VND</div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="main-content">
+                <!-- Current Wallet Info -->
+                <section class="wallet-info-card">
+                    <div class="wallet-header">
+                        <h2 id="currentWalletName">Ví chính</h2>
+                        <div class="balance-display">
+                            <span class="balance-label">Số dư:</span>
+                            <span class="balance-amount" id="currentBalance">0</span>
+                            <span class="currency">VND</span>
+                        </div>
+                    </div>
+
+                    <div class="wallet-actions">
+                        <button class="wallet-action-btn" id="editWalletBtn"
+                            style=" background-color: #0ea5e9;color: white;">Đổi tên ví</button>
+                        <button class="wallet-action-btn" id="adjustBalanceBtn"
+                            style=" background-color: #22c55e;;color: white;">Điều chỉnh số dư</button>
+                        <button class="wallet-action-btn" id="transferMoneyBtn"
+                            style=" background-color: rgb(27, 123, 161);color: white;">Chuyển tiền</button>
+                        <button class="wallet-action-btn delete" id="deleteWalletBtn"
+                            style=" background-color: #e90e86;color: white;">Xóa ví</button>
+                    </div>
+                </section>
+
+                <!-- Quick Actions -->
+                <section class="quick-actions">
+                    <button class="quick-action-btn" id="addIncomeBtn">
+                        <img src="img/coin.png" alt="coin" class="icon-money">
+                        <style>
+                            .icon-money {
+                                width: 100px;
+                                height: 100px;
+                                object-fit: contain;
+                            }
+                        </style>
+                        <span class="action-text"
+                            style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;  font-weight: bold; font: 15px">THU
+                            NHẬP</span>
+                    </button>
+                    <button class="quick-action-btn" id="addExpenseBtn">
+                        <img src="img/ChiRa.png" alt="coin" class="icon-money">
+                        <style>
+                            .icon-money {
+                                width: 100px;
+                                height: 100px;
+                                object-fit: contain;
+                            }
+                        </style>
+                        <span class="action-text"
+                            style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;  font-weight: bold; font: 15px">KHOẢN
+                            CHI</span>
+                    </button>
+                </section>
+
+                <!-- Add Transaction Button -->
+                <section class="add-transaction-section">
+                    <button class="btn-add-transaction" id="openTransactionModalBtn">
+                        THÊM GIAO DỊCH MỚI
+                    </button>
+                </section>
+
+                <!-- Biểu đồ thống kê -->
+                <section class="chart-section">
+                    <div class="chart-container">
+                        <canvas id="transactionChart"></canvas>
+                    </div>
+                    <div class="chart-legend" id="chartLegend">
+                        <!-- Legend will be populated by JavaScript -->
+                    </div>
+                </section>
+
+                <!-- Transaction History -->
+                <section class="transaction-history">
+                    <h3 class="section-title">LỊCH SỬ GIAO DỊCH</h3>
+                    <div class="transaction-list" id="transactionList">
+                        <!-- Transactions will be populated by JavaScript -->
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <!-- Modals (giữ nguyên phần modal từ code cũ) -->
+    <div class="modal" id="transactionModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Thêm giao dịch mới</h3>
+                <span class="close">&times;</span>
+            </div>
+            <form id="transactionForm" class="modal-form">
+                <div class="form-group">
+                    <label for="transactionType">Loại giao dịch</label>
+                    <select id="transactionType" required>
+                        <option value="income">Khoản thu</option>
+                        <option value="expense">Khoản chi</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="transactionName">Tên giao dịch</label>
+                    <input type="text" id="transactionName" placeholder="Nhập tên giao dịch" required>
+                </div>
+                <div class="form-group">
+                    <label for="transactionAmount">Số tiền (VND)</label>
+                    <input type="text" id="transactionAmount" placeholder="Nhập số tiền" required class="amount-input">
+                </div>
+                <div class="form-group">
+                    <label for="transactionDate">Ngày thực hiện</label>
+                    <input type="date" id="transactionDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="transactionNote">Ghi chú</label>
+                    <textarea id="transactionNote" placeholder="Thêm ghi chú (tùy chọn)"></textarea>
+                </div>
+                <button type="submit" class="btn-primary">Thêm giao dịch</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal" id="createWalletModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Tạo ví mới</h3>
+                <span class="close">&times;</span>
+            </div>
+            <form id="createWalletForm" class="modal-form">
+                <div class="form-group">
+                    <label for="walletName">Tên ví</label>
+                    <input type="text" id="walletName" placeholder="Nhập tên ví" required>
+                </div>
+                <div class="form-group">
+                    <label for="initialBalance">Số dư ban đầu (VND)</label>
+                    <input type="text" id="initialBalance" placeholder="Nhập số dư ban đầu" required
+                        class="amount-input">
+                </div>
+                <button type="submit" class="btn-primary">Tạo ví</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal" id="adjustBalanceModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Điều chỉnh số dư</h3>
+                <span class="close">&times;</span>
+            </div>
+            <form id="adjustBalanceForm" class="modal-form">
+                <div class="form-group">
+                    <label for="adjustmentAmount">Số tiền điều chỉnh (VND)</label>
+                    <input type="text" id="adjustmentAmount" placeholder="Nhập số tiền" required class="amount-input">
+                </div>
+                <div class="form-group">
+                    <label for="adjustmentNote">Ghi chú điều chỉnh</label>
+                    <textarea id="adjustmentNote" placeholder="Lý do điều chỉnh số dư" required></textarea>
+                </div>
+                <button type="submit" class="btn-primary">Lưu điều chỉnh</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal" id="transferMoneyModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Chuyển tiền giữa các ví</h3>
+                <span class="close">&times;</span>
+            </div>
+            <form id="transferMoneyForm" class="modal-form">
+                <div class="form-group">
+                    <label for="fromWallet">Từ ví</label>
+                    <select id="fromWallet" required>
+                        <!-- Options will be populated by JavaScript -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="toWallet">Đến ví</label>
+                    <select id="toWallet" required>
+                        <!-- Options will be populated by JavaScript -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="transferAmount">Số tiền chuyển (VND)</label>
+                    <input type="text" id="transferAmount" placeholder="Nhập số tiền" required class="amount-input">
+                </div>
+                <button type="submit" class="btn-primary">Chuyển tiền</button>
+            </form>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
