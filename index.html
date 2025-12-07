@@ -39,7 +39,7 @@
                     <div class="wallet-list" id="walletList">
                         <!-- Wallets will be populated by JavaScript -->
                     </div>
-                    
+
                     <!-- TỔNG TIỀN TẤT CẢ CÁC VÍ -->
                     <div class="total-balance-section">
                         <div class="total-balance-header">
@@ -74,6 +74,48 @@
                             style=" background-color: rgb(27, 123, 161);color: white;">Chuyển tiền</button>
                         <button class="wallet-action-btn delete" id="deleteWalletBtn"
                             style=" background-color: #e90e86;color: white;">Xóa ví</button>
+                    </div>
+                </section>
+                <!-- Date Filter & Daily Statistics -->
+                <section class="date-statistics-section">
+                    <div class="date-filter">
+                        <div class="date-picker-container">
+                            <label for="dateFilter">Chọn ngày xem thống kê:</label>
+                            <input type="date" id="dateFilter" class="date-input">
+                            <button id="todayBtn" class="btn-today">Hôm nay</button>
+                        </div>
+
+                        <div class="daily-statistics">
+                            <div class="stat-card income-stat">
+                                <div class="stat-icon">
+                                    <i class="bi bi-arrow-down-circle"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <div class="stat-label">Tổng thu</div>
+                                    <div class="stat-amount" id="dailyIncome">0 đ</div>
+                                </div>
+                            </div>
+
+                            <div class="stat-card expense-stat">
+                                <div class="stat-icon">
+                                    <i class="bi bi-arrow-up-circle"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <div class="stat-label">Tổng chi</div>
+                                    <div class="stat-amount" id="dailyExpense">0 đ</div>
+                                </div>
+                            </div>
+
+                            <div class="stat-card balance-stat">
+                                <div class="stat-icon">
+                                    <i class="bi bi-wallet2"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <div class="stat-label">Số dư cuối ngày</div>
+                                    <div class="stat-amount" id="dailyBalance">0 đ</div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </section>
 
@@ -239,8 +281,9 @@
             </form>
         </div>
     </div>
-    
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="script.js"></script>
 </body>
+
 </html>
